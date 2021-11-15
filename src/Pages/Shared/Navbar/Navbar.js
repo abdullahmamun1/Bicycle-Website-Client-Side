@@ -1,11 +1,116 @@
-import React from 'react';
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import { NavLink } from 'react-router-dom';
+import { makeStyles } from '@mui/styles';
+import { Divider, Drawer, List, ListItem, ListItemText, useTheme } from '@mui/material';
+import { HashLink } from 'react-router-hash-link';
 
-const Navbar = () => {
-    return (
-        <div>
-            <h1>This is navbar</h1>
-        </div>
+export default function Navbar() {
+    const [state, setState] = React.useState(false);
+    const theme = useTheme()
+
+    const useStyle = makeStyles({
+        navItem: {
+            textDecoration: 'none',
+            margin: '0 10px'
+        },
+        navIcon: {
+            [theme.breakpoints.up('sm')]: {
+                display: 'none !important'
+            }
+        },
+        navItemContainer: {
+            [theme.breakpoints.down('sm')]: {
+                display: 'none !important'
+            }
+        },
+        navLogo: {
+            [theme.breakpoints.down('sm')]: {
+                textAlign: 'right'
+            }
+        }
+
+    })
+    const { navItem, navIcon, navItemContainer, navLogo } = useStyle()
+    const list = (
+        <Box
+            sx={{ width: 250 }}
+            role="presentation"
+
+        >
+            <List>
+
+                <ListItem button >
+                    <ListItemText ><NavLink className={navItem} to="/home">Home</NavLink></ListItemText>
+                </ListItem>
+                <Divider />
+                <ListItem button >
+                    <ListItemText ><NavLink className={navItem} to="/products">Products</NavLink></ListItemText>
+                </ListItem>
+                <Divider />
+                <ListItem button >
+                    <ListItemText ><NavLink className={navItem} to="/reviews">Reviews</NavLink></ListItemText>
+                </ListItem>
+                <Divider />
+                <ListItem button >
+                    <ListItemText > <NavLink className={navItem} to="/contact">Contact Us</NavLink></ListItemText>
+                </ListItem>
+                <Divider />
+                <ListItem button >
+                    <ListItemText > <NavLink className={navItem} to="/login">Login</NavLink></ListItemText>
+                </ListItem>
+
+            </List>
+        </Box>
     );
-};
 
-export default Navbar;
+    return (
+        <>
+            <Box sx={{ flexGrow: 1 }}>
+                <AppBar position="static" style={{ background: 'transparent', boxShadow: 'none' }}>
+                    <Toolbar>
+                        <IconButton
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2, color: '#5964b4' }}
+                            className={navIcon}
+                            onClick={() => setState(true)}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography className={navLogo} variant="h6" component="div" sx={{ flexGrow: 1, color: '#5964b4', fontWeight: 700 }}>
+                            <HashLink to="/home#home" style={{ textDecoration: 'none' }}>Bicycler's Shop</HashLink>
+                        </Typography>
+                        <Box className={navItemContainer}>
+                            <HashLink smooth className={navItem} to="/home">Home</HashLink>
+                            <HashLink smooth className={navItem} to="/home#products">Products</HashLink>
+                            <HashLink smooth className={navItem} to="/home#reviews">Reviews</HashLink>
+                            <HashLink smooth className={navItem} to="/home#contact">Contact Us</HashLink>
+                            <NavLink style={{ textDecoration: 'none' }} to="/login"><Button style={{ backgroundColor: '#5964b4', color: 'white' }} sx={{ ml: 5 }}>Login</Button></NavLink>
+                        </Box>
+                    </Toolbar>
+                </AppBar>
+            </Box>
+            <div>
+
+                <React.Fragment>
+                    <Drawer
+                        open={state}
+                        onClose={() => setState(false)}
+                    >
+                        {list}
+                    </Drawer>
+                </React.Fragment>
+
+            </div>
+        </>
+    );
+}
