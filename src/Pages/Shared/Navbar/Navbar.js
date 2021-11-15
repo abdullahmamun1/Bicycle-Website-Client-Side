@@ -73,7 +73,7 @@ export default function Navbar() {
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="static" style={{ background: 'transparent', boxShadow: 'none' }}>
+                <AppBar position="static" style={{ background: 'white', position: 'fixed', }}>
                     <Toolbar>
                         <IconButton
                             size="large"
@@ -90,7 +90,8 @@ export default function Navbar() {
                             <HashLink to="/home#home" style={{ textDecoration: 'none' }}>Bicycler's Shop</HashLink>
                         </Typography>
                         <Box className={navItemContainer}>
-                            <HashLink smooth className={navItem} to="/home">Home</HashLink>
+                            <HashLink smooth className={navItem} to="/home#home">Home</HashLink>
+                            <NavLink smooth className={navItem} to="/explore">Explore</NavLink>
                             <HashLink smooth className={navItem} to="/home#products">Products</HashLink>
                             <HashLink smooth className={navItem} to="/home#reviews">Reviews</HashLink>
                             <HashLink smooth className={navItem} to="/home#contact">Contact Us</HashLink>
