@@ -6,8 +6,8 @@ import bg from '../../../images/bg-cycle.jpg'
 const Banner = () => {
     return (
         <div style={{
-            height: '550px', overflow: "hidden", background: `rgba(0,0,0,0.7)url(${bg})`, backgroundSize: '100% auto', backgroundBlendMode: 'darken', display: 'flex', alignItems: 'center'
-        }}>
+            height: '600px', overflow: "hidden", background: `rgba(0,0,0,0.7)url(${bg})`, backgroundSize: '100% auto', backgroundBlendMode: 'darken', display: 'flex', alignItems: 'center'
+        }} >
             <Container >
                 <div>
                     <Typography variant='h3' style={{ fontWeight: 700, color: 'white' }}>

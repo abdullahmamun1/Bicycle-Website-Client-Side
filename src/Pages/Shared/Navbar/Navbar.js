@@ -10,11 +10,12 @@ import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
 import { Divider, Drawer, List, ListItem, ListItemText, useTheme } from '@mui/material';
 import { HashLink } from 'react-router-hash-link';
+import useAuth from '../../../hooks/useAuth';
 
 export default function Navbar() {
+    const { user, logOut } = useAuth()
     const [state, setState] = React.useState(false);
     const theme = useTheme()
-
     const useStyle = makeStyles({
         navItem: {
             textDecoration: 'none',
@@ -73,7 +74,7 @@ export default function Navbar() {
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="static" style={{ background: 'white', position: 'fixed', }}>
+                <AppBar position="fixed" style={{ background: 'white' }}>
                     <Toolbar>
                         <IconButton
                             size="large"
@@ -91,11 +92,13 @@ export default function Navbar() {
                         </Typography>
                         <Box className={navItemContainer}>
                             <HashLink smooth className={navItem} to="/home#home">Home</HashLink>
-                            <NavLink smooth className={navItem} to="/explore">Explore</NavLink>
+                            <NavLink className={navItem} to="/explore">Explore</NavLink>
                             <HashLink smooth className={navItem} to="/home#products">Products</HashLink>
                             <HashLink smooth className={navItem} to="/home#reviews">Reviews</HashLink>
                             <HashLink smooth className={navItem} to="/home#contact">Contact Us</HashLink>
-                            <NavLink style={{ textDecoration: 'none' }} to="/login"><Button style={{ backgroundColor: '#5964b4', color: 'white' }} sx={{ ml: 5 }}>Login</Button></NavLink>
+
+                            {user?.email ? <Button onClick={logOut} style={{ backgroundColor: '#5964b4', color: 'white' }} sx={{ ml: 5 }}>Log Out</Button> : <NavLink style={{ textDecoration: 'none' }} to="/login"><Button style={{ backgroundColor: '#5964b4', color: 'white' }} sx={{ ml: 5 }}>Login</Button></NavLink>}
+                            {user.email && <Typography style={{ color: 'gray' }} sx={{ ml: 2 }} variant="caption">{user.displayName}</Typography>}
                         </Box>
                     </Toolbar>
                 </AppBar>

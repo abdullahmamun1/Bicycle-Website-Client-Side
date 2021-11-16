@@ -24,11 +24,11 @@ const Product = ({ product }) => {
                         Chainwheel: {chainwheel}<br />
                         Tire: {tires}<br />
                         Size: {size}<br />
-                        Price: {price}
+                        <span style={{ fontWeight: 700 }}> Price: {price}</span>
                     </Typography>
                 </CardContent>
                 <CardActions style={{ justifyContent: 'center' }} sx={{ mb: 1 }}>
-                    <NavLink style={{ textDecoration: 'none' }} to={`/purchase/${_id}`} ><Button style={{ backgroundColor: '#5964b4', color: 'white' }}>Buy Now</Button></NavLink>
+                    <NavLink style={{ textDecoration: 'none' }} to={`/purchase/${_id}`}><Button style={{ backgroundColor: '#5964b4', color: 'white' }}>Buy Now</Button></NavLink>
                 </CardActions>
             </Card>
         </Grid >
