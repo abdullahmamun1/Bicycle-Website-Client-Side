@@ -3,11 +3,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Product = ({ product }) => {
-    const { frame, brake, chainwheel, tires, size, price } = product.description
-    const { name, img, _id } = product
+
+    const { name, description, price, img, _id } = product
     return (
         <Grid item xs={12} md={6} lg={4} >
-            <Card sx={{ maxWidth: '100%' }}>
+            <Card sx={{ maxWidth: '100%' }} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
                 <CardMedia
                     component="img"
                     height="325"
@@ -19,12 +19,8 @@ const Product = ({ product }) => {
                         {name}
                     </Typography>
                     <Typography variant="caption" color="text.secondary">
-                        Frame: {frame} <br />
-                        Brakes: {brake}<br />
-                        Chainwheel: {chainwheel}<br />
-                        Tire: {tires}<br />
-                        Size: {size}<br />
-                        Price: {price}
+                        {description} <br />
+                        <Typography variant="h6" style={{ fontWeight: 700 }}> Price: {price}</Typography>
                     </Typography>
                 </CardContent>
                 <CardActions style={{ justifyContent: 'center' }} sx={{ mb: 1 }}>

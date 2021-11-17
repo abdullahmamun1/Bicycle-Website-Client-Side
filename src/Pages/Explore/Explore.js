@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Grid, Typography } from '@mui/material';
-import Product from './Product/Product';
+import ExploreProduct from './ExploreProduct/ExploreProduct';
 import Navbar from '../Shared/Navbar/Navbar';
 
 const Explore = () => {
@@ -22,11 +22,11 @@ const Explore = () => {
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <Grid container spacing={2} style={{ width: '90%' }}>
                         {
-                            products.map(product => <Product
+                            products.map(product => <ExploreProduct
                                 key={product._id}
                                 product={product}
                             >
-                            </Product>)
+                            </ExploreProduct>)
                         }
                     </Grid>
                 </div>
