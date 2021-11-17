@@ -48,19 +48,23 @@ export default function Navbar() {
             <List>
 
                 <ListItem button >
-                    <ListItemText ><NavLink className={navItem} to="/home">Home</NavLink></ListItemText>
+                    <ListItemText ><HashLink className={navItem} to="/home#home">Home</HashLink></ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem button >
-                    <ListItemText ><NavLink className={navItem} to="/products">Products</NavLink></ListItemText>
+                    <ListItemText > <NavLink className={navItem} to="/explore">Explore</NavLink></ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem button >
-                    <ListItemText ><NavLink className={navItem} to="/reviews">Reviews</NavLink></ListItemText>
+                    <ListItemText ><HashLink className={navItem} to="/home#products">Products</HashLink></ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem button >
-                    <ListItemText > <NavLink className={navItem} to="/contact">Contact Us</NavLink></ListItemText>
+                    <ListItemText ><HashLink className={navItem} to="/home#reviews">Reviews</HashLink></ListItemText>
+                </ListItem>
+                <Divider />
+                <ListItem button >
+                    <ListItemText > <HashLink className={navItem} to="/home#contact">Contact Us</HashLink></ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem button >

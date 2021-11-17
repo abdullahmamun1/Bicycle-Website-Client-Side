@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useParams, useHistory } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 import Navbar from '../Navbar/Navbar';
+import './Purchase.css'
 
 const Purchase = () => {
     const { user } = useAuth()
@@ -35,7 +36,6 @@ const Purchase = () => {
 
     return (
         <>
-
             <Navbar></Navbar>
             <Container sx={{ pt: 15 }}>
                 <div>
@@ -45,7 +45,7 @@ const Purchase = () => {
                     </Typography>
 
                     <Grid container spacing={1} sx={{ mt: 6 }}>
-                        <Grid item xs={12} md={6} >
+                        <Grid item xs={12} md={6} className="product-img" >
                             <img style={{ border: '2px solid #5964b4', borderRadius: '30px' }} src={product.img} width="70%" alt="" />
                         </Grid>
                         <Grid item xs={12} md={6} style={{ display: 'flex', alignItems: 'center' }}>
@@ -67,65 +67,59 @@ const Purchase = () => {
                         Shipping Information
                         <hr style={{ width: '20%', marginTop: 2 }} />
                     </Typography>
+                    <form onSubmit={handleSubmit(onSubmit)} className="form" style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', marginTop: '30px' }}>
+                        <TextField
+                            defaultValue={user.displayName}
+                            type="text"
+                            label="Name"
+                            name="name"
+                            {...register("name")}
+                            style={{ width: '80%', margin: '8px 0' }}
+                        />
+                        <TextField
+                            defaultValue={user.email}
+                            type="email"
+                            label="Email"
+                            name="email"
+                            {...register("email")}
+                            style={{ width: '80%', margin: '8px 0' }}
+                        />
+                        <select style={{ padding: '18px 10px', borderRadius: '5px', width: '80%', margin: '8px 0' }}  {...register("productName", { required: true })} placeholder="Please Select your product" >
+                            <option value="" selected disabled>Please Select your product</option>
+                            <option value={product.name}>{product.name}</option>
+                        </select>
+                        <TextField
+                            value={product.price}
+                            name="price"
+                            readOnly
+                            {...register("price")}
+                            style={{ width: '80%', margin: '8px 0' }}
+                        />
+                        <TextField
+                            type="text"
+                            label="Address"
+                            name="address"
+                            {...register("address", { required: true })}
+                            style={{ width: '80%', margin: '8px 0' }}
+                        />
+                        <TextField
+                            type="text"
+                            label="Phone Number"
+                            name="phone"
+                            {...register("phone", { required: true })}
+                            style={{ width: '80%', margin: '8px 0' }}
+                        />
 
-                    <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
-                        <div style={{ width: '75%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                            <TextField
-                                defaultValue={user.displayName}
-                                type="text"
-                                label="Name"
-                                name="name"
-                                {...register("name")}
-                                style={{ width: '80%', margin: '8px 0' }}
-                            />
-                            <TextField
-                                defaultValue={user.email}
-                                type="email"
-                                label="Email"
-                                name="email"
-                                {...register("email")}
-                                style={{ width: '80%', margin: '8px 0' }}
-                            />
-                            <select style={{ padding: '18px 10px', borderRadius: '5px', width: '80%', margin: '8px 0' }}  {...register("productName", { required: true })} placeholder="Please Select your product" >
-                                <option value="" selected disabled>Please Select your product</option>
-                                <option value={product.name}>{product.name}</option>
-                            </select>
-                            <TextField
-                                value={product.price}
-                                name="price"
-                                readOnly
-                                {...register("price")}
-                                style={{ width: '80%', margin: '8px 0' }}
-                            />
-                            <TextField
-                                type="text"
-                                label="Address"
-                                name="address"
-                                {...register("address", { required: true })}
-                                style={{ width: '80%', margin: '8px 0' }}
-                            />
-                            <TextField
-                                type="text"
-                                label="Phone Number"
-                                name="phone"
-                                {...register("phone", { required: true })}
-                                style={{ width: '80%', margin: '8px 0' }}
-                            />
-
-                            <input
-                                defaultValue="Pending"
-                                name="status"
-                                readOnly
-                                {...register("status")}
-                                style={{ border: 'none', color: 'gray', width: '80%', margin: '8px 0' }}
-                            />
-                            <Button type="submit" style={{ width: '80%', backgroundColor: '#5964b4' }} variant="contained">Submit</Button>
-
-                        </div>
+                        <input
+                            defaultValue="Pending"
+                            name="status"
+                            readOnly
+                            {...register("status")}
+                            style={{ border: 'none', color: 'gray', width: '80%', margin: '8px 0' }}
+                        />
+                        <Button type="submit" style={{ width: '80%', backgroundColor: '#5964b4' }} variant="contained">Submit</Button>
                     </form>
                 </div>
-
-
             </Container>
         </>
     );
