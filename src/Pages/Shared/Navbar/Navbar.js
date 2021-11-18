@@ -64,10 +64,6 @@ export default function Navbar() {
                 </ListItem>
                 <Divider />
                 <ListItem button >
-                    <ListItemText > <HashLink className={navItem} to="/home#contact">Contact Us</HashLink></ListItemText>
-                </ListItem>
-                <Divider />
-                <ListItem button >
                     <ListItemText > <NavLink className={navItem} to="/login">Login</NavLink></ListItemText>
                 </ListItem>
 
@@ -99,8 +95,6 @@ export default function Navbar() {
                             <NavLink className={navItem} to="/explore">Explore</NavLink>
                             <HashLink smooth className={navItem} to="/home#products">Products</HashLink>
                             <HashLink smooth className={navItem} to="/home#reviews">Reviews</HashLink>
-                            <HashLink smooth className={navItem} to="/home#contact">Contact Us</HashLink>
-
                             {user?.email ? <Button onClick={logOut} style={{ backgroundColor: '#5964b4', color: 'white' }} sx={{ ml: 5 }}>Log Out</Button> : <NavLink style={{ textDecoration: 'none' }} to="/login"><Button style={{ backgroundColor: '#5964b4', color: 'white' }} sx={{ ml: 5 }}>Login</Button></NavLink>}
                             {user.email && <Typography style={{ color: 'gray' }} sx={{ ml: 2 }} variant="caption">{user.displayName}</Typography>}
                         </Box>

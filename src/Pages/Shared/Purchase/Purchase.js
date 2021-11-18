@@ -110,13 +110,17 @@ const Purchase = () => {
                             style={{ width: '80%', margin: '8px 0' }}
                         />
 
-                        <input
-                            defaultValue="Pending"
+                        <TextField
                             name="status"
-                            readOnly
+                            label="Status"
+                            defaultValue="Pending"
+                            InputProps={{
+                                readOnly: true,
+                            }}
                             {...register("status")}
-                            style={{ border: 'none', color: 'gray', width: '80%', margin: '8px 0' }}
+                            style={{ color: 'gray', width: '80%', margin: '8px 0' }}
                         />
+
                         <Button type="submit" style={{ width: '80%', backgroundColor: '#5964b4' }} variant="contained">Submit</Button>
                     </form>
                 </div>

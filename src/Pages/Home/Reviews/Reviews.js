@@ -3,7 +3,7 @@ import React from 'react';
 
 const Reviews = () => {
     return (
-        <Container>
+        <Container id="reviews">
             <Typography variant='h3' style={{ fontWeight: 700, textAlign: 'center', color: '#5964b4' }} sx={{ mt: 4 }}>
                 Happy Client Says
             </Typography>
