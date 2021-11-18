@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams, useHistory } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
+import Footer from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
 import './Purchase.css'
 
@@ -89,13 +90,6 @@ const Purchase = () => {
                             <option value={product.name}>{product.name}</option>
                         </select>
                         <TextField
-                            value={product.price}
-                            name="price"
-                            readOnly
-                            {...register("price")}
-                            style={{ width: '80%', margin: '8px 0' }}
-                        />
-                        <TextField
                             type="text"
                             label="Address"
                             name="address"
@@ -112,7 +106,6 @@ const Purchase = () => {
 
                         <TextField
                             name="status"
-                            label="Status"
                             defaultValue="Pending"
                             InputProps={{
                                 readOnly: true,
@@ -125,6 +118,7 @@ const Purchase = () => {
                     </form>
                 </div>
             </Container>
+            <Footer></Footer>
         </>
     );
 };

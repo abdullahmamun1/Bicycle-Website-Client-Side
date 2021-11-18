@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Grid, Typography } from '@mui/material';
 import ExploreProduct from './ExploreProduct/ExploreProduct';
 import Navbar from '../Shared/Navbar/Navbar';
+import Footer from '../Shared/Footer/Footer';
 
 const Explore = () => {
     const [products, setProducts] = useState([])
@@ -31,6 +32,7 @@ const Explore = () => {
                     </Grid>
                 </div>
             </Container>
+            <Footer></Footer>
         </>
     );
 };

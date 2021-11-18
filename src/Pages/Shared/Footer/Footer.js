@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { faBasketballBall } from '@fortawesome/free-solid-svg-icons';
 import { Grid, Typography } from '@mui/material';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
@@ -27,9 +30,25 @@ const Footer = () => {
                         </div>
                     </Grid>
                     <Grid item xs={12} md={4}>
-                        <h1>a</h1>
+                        <Typography variant="h4" style={{ fontWeight: 700 }}>
+                            Social Media
+                        </Typography>
+                        <div>
+                            <a href="/home"><FontAwesomeIcon icon={faFacebook} style={{
+                                color: '#fff', fontSize: 20, padding: '0 5px'
+                            }} /></a>
+                            < a href="/home" > <FontAwesomeIcon icon={faInstagram} style={{ color: '#fff', fontSize: 20, padding: '0 5px' }} /></a>
+                            <a href="/home"><FontAwesomeIcon icon={faLinkedin} style={{ color: '#fff', fontSize: 20, padding: '0 5px' }} /></a>
+                            <a href="/home"><FontAwesomeIcon icon={faBasketballBall} style={{ color: '#fff', fontSize: 20, padding: '0 5px' }} /></a>
+                        </div>
                     </Grid>
                 </Grid>
+
+            </div>
+            <div style={{ textAlign: 'center', paddingBottom: 20 }}>
+                <Typography variant="caption" style={{ color: '#fff' }}>
+                    &#169; 2021 Copyright: Smart Tourist Service | All Terms Reserved
+                </Typography>
             </div>
         </div >
     );
