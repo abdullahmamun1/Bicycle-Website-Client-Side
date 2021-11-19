@@ -38,7 +38,6 @@ function Dashboard(props) {
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const { logOut, user, admin } = useAuth()
     let { path, url } = useRouteMatch();
-    console.log(admin);
     const useStyle = makeStyles({
         navItem: {
             textDecoration: 'none',

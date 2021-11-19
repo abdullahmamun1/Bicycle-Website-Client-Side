@@ -29,7 +29,7 @@ const ManageProducts = () => {
     }
 
     return (
-        <Container style={{ width: '75%' }}>
+        <Container style={{ width: '80%' }}>
             {products.map(product =>
                 <Grid key={product._id} container spacing={2} style={{ backgroundColor: '#5964b4', color: '#fff', padding: '10px 5px', margin: '20px 0' }}>
                     <Grid item xs={12} md={4}>

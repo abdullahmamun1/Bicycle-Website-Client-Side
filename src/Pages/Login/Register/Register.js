@@ -20,10 +20,9 @@ const Register = () => {
         const value = e.target.value;
         let newLoginData = { ...loginData }
         newLoginData[field] = value;
-        console.log(newLoginData);
         setLoginData(newLoginData)
     }
-    console.log(loginData);
+
 
     const handleLoginSubmit = e => {
 
