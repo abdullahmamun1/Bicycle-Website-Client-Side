@@ -13,13 +13,14 @@ const Reviews = () => {
     }, [])
 
     return (
-        <Container id="reviews">
+        <Container id="reviews" style={{ margin: '100px 0' }
+        }>
             <Typography variant='h3' style={{ fontWeight: 700, textAlign: 'center', color: '#5964b4' }} sx={{ mt: 4 }}>
                 Happy Client Says
             </Typography>
             <hr style={{ width: '20%' }} />
 
-            <Grid container spacing={2}>
+            <Grid container spacing={4} >
                 {
                     reviews.map(review => <Review key={review._id} review={review}></Review>)
                 }
@@ -28,7 +29,7 @@ const Reviews = () => {
 
             </div>
 
-        </Container>
+        </Container >
     );
 };
 

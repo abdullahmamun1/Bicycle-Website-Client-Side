@@ -26,13 +26,18 @@ import DashboardHome from '../DashboardHome/DashboardHome';
 import MyOrders from '../MyOrders/MyOrders';
 import AddReview from '../AddReview/AddReview';
 import Payment from '../Payment/Payment';
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
+import ManageOrders from '../ManageOrders/ManageOrders';
+import AddProduct from '../AddProduct/AddProduct';
+import ManageProducts from '../ManageProducts/ManageProducts';
+import AdminRoute from '../../Login/AdminRoute/AdminRoute';
 
 const drawerWidth = 240;
 
 function Dashboard(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const { logOut, user } = useAuth()
+    const { logOut, user, admin } = useAuth()
     let { path, url } = useRouteMatch();
 
     const useStyle = makeStyles({
@@ -54,20 +59,43 @@ function Dashboard(props) {
 
 
             <List>
-                <ListItem button >
-                    <ListItemText > <NavLink className={navItem} to="/home" style={{ color: '#5964b4' }}>Home</NavLink></ListItemText>
-                </ListItem>
-                <ListItem button >
-                    <ListItemText > <NavLink className={navItem} to={`${url}/pay`} style={{ color: '#5964b4' }}>Pay</NavLink></ListItemText>
-                </ListItem>
-                <Divider />
-                <ListItem button >
-                    <ListItemText > <NavLink className={navItem} to={`${url}/orders/${user.email}`} style={{ color: '#5964b4' }}>My orders</NavLink></ListItemText>
-                </ListItem>
-                <Divider />
-                <ListItem button >
-                    <ListItemText > <NavLink className={navItem} to={`${url}/addReview`} style={{ color: '#5964b4' }}>Add a Review</NavLink></ListItemText>
-                </ListItem>
+                {
+                    !admin &&
+                    <Box>
+                        <ListItem button >
+                            <ListItemText > <NavLink className={navItem} to="/home" style={{ color: '#5964b4' }}>Back to Homepage</NavLink></ListItemText>
+                        </ListItem>
+                        <ListItem button >
+                            <ListItemText > <NavLink className={navItem} to={`${url}/pay`} style={{ color: '#5964b4' }}>Pay</NavLink></ListItemText>
+                        </ListItem>
+                        <Divider />
+                        <ListItem button >
+                            <ListItemText > <NavLink className={navItem} to={`${url}/orders/${user.email}`} style={{ color: '#5964b4' }}>My orders</NavLink></ListItemText>
+                        </ListItem>
+                        <Divider />
+                        <ListItem button >
+                            <ListItemText > <NavLink className={navItem} to={`${url}/addReview`} style={{ color: '#5964b4' }}>Add a Review</NavLink></ListItemText>
+                        </ListItem>
+                        <Divider />
+                    </Box>
+                }
+                {
+                    admin &&
+                    <Box>
+                        <ListItem button >
+                            <ListItemText > <NavLink className={navItem} to={`${url}/manageOrders`} style={{ color: '#5964b4' }}>Manage All Orders</NavLink></ListItemText>
+                        </ListItem>
+                        <ListItem button >
+                            <ListItemText > <NavLink className={navItem} to={`${url}/addProduct`} style={{ color: '#5964b4' }}>Add a Product</NavLink></ListItemText>
+                        </ListItem>
+                        <ListItem button >
+                            <ListItemText > <NavLink className={navItem} to={`${url}/makeAdmin`} style={{ color: '#5964b4' }}>Make Admin</NavLink></ListItemText>
+                        </ListItem>
+                        <ListItem button >
+                            <ListItemText > <NavLink className={navItem} to={`${url}/manageProducts`} style={{ color: '#5964b4' }}>Manage Products</NavLink></ListItemText>
+                        </ListItem>
+                    </Box>
+                }
                 <Divider />
                 <ListItem button onClick={logOut} >
                     <ListItemText > <Button style={{ color: '#5964b4' }} >Log Out</Button></ListItemText>
@@ -156,6 +184,18 @@ function Dashboard(props) {
                     <Route path={`${path}/addReview`}>
                         <AddReview></AddReview>
                     </Route>
+                    <AdminRoute path={`${path}/manageOrders`}>
+                        <ManageOrders></ManageOrders>
+                    </AdminRoute>
+                    <AdminRoute path={`${path}/addProduct`}>
+                        <AddProduct></AddProduct>
+                    </AdminRoute>
+                    <AdminRoute path={`${path}/makeAdmin`}>
+                        <MakeAdmin></MakeAdmin>
+                    </AdminRoute>
+                    <AdminRoute path={`${url}/manageProducts`}>
+                        <ManageProducts></ManageProducts>
+                    </AdminRoute>
                 </Switch>
 
             </Box>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import initializeAuthenticaition from '../Pages/Login/Firebase/firebase.init';
-import { getAuth, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, getIdToken, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 initializeAuthenticaition();
 
@@ -8,6 +8,8 @@ const useFirebase = () => {
     const [user, setUser] = useState({})
     const [error, setError] = useState('')
     const [isLoading, setIsLoading] = useState(true)
+    const [admin, setAdmin] = useState(false)
+    const [token, setToken] = useState('')
 
     const auth = getAuth();
 
@@ -15,6 +17,10 @@ const useFirebase = () => {
         const unsubscribed = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user)
+                getIdToken(user)
+                    .then(idToken => {
+                        setToken(idToken);
+                    })
             } else {
                 setUser({})
             }
@@ -28,6 +34,9 @@ const useFirebase = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 setError('')
+                const newUser = { email, displayName: name }
+                setUser(newUser)
+                saveUser(email, name)
                 updateProfile(auth.currentUser, {
                     displayName: name
                 }).then(() => {
@@ -66,8 +75,34 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false));
     }
 
+    const saveUser = (email, displayName, method) => {
+        const user = { email, displayName };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then()
+
+    }
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/users/${user.email}`)
+
+            .then(res => res.json())
+            .then(data => {
+
+                setAdmin(data.admin)
+            })
+
+    }, [user.email])
+
     return {
         user,
+        admin,
+        token,
         error,
         isLoading,
         loginUser,
