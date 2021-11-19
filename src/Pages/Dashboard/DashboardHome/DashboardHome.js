@@ -3,7 +3,7 @@ import React from 'react';
 const DashboardHome = () => {
     return (
         <div>
-            Home
+            Dashboard Home. Use Side Link to navigate
         </div>
     );
 };

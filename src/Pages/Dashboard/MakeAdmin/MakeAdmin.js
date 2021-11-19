@@ -1,11 +1,9 @@
 import { Alert, Button, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import useAuth from '../../../hooks/useAuth';
 
 const MakeAdmin = () => {
     const [email, setEmail] = useState('')
     const [success, setSuccess] = useState(false)
-    const { token } = useAuth()
 
     const handleOnBlur = e => {
         setEmail(e.target.value)
@@ -14,10 +12,9 @@ const MakeAdmin = () => {
     const handleAdminDubmit = e => {
         e.preventDefault()
         const user = { email }
-        fetch('https://secret-everglades-74123.herokuapp.com/admin', {
+        fetch('https://secret-everglades-74123.herokuapp.com/users/admin', {
             method: 'PUT',
             headers: {
-                'authorization': `Bearer ${token}`,
                 'content-type': 'application/json'
             },
             body: JSON.stringify(user)

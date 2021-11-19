@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import initializeAuthenticaition from '../Pages/Login/Firebase/firebase.init';
-import { getAuth, getIdToken, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 initializeAuthenticaition();
 
@@ -9,18 +9,16 @@ const useFirebase = () => {
     const [error, setError] = useState('')
     const [isLoading, setIsLoading] = useState(true)
     const [admin, setAdmin] = useState(false)
-    const [token, setToken] = useState('')
 
     const auth = getAuth();
 
+
+    // observer user state change
     useEffect(() => {
         const unsubscribed = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user)
-                getIdToken(user)
-                    .then(idToken => {
-                        setToken(idToken);
-                    })
+
             } else {
                 setUser({})
             }
@@ -29,6 +27,8 @@ const useFirebase = () => {
         return () => unsubscribed;
     }, [auth])
 
+
+    //register user
     const registerUser = (email, password, name, history) => {
         setIsLoading(true)
         createUserWithEmailAndPassword(auth, email, password)
@@ -51,6 +51,8 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false));
     }
 
+
+    //user sign in
     const loginUser = (email, password, history, location) => {
         setIsLoading(true)
         signInWithEmailAndPassword(auth, email, password)
@@ -65,6 +67,8 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false));
     }
 
+
+    //user log out
     const logOut = () => {
         setIsLoading(true)
         signOut(auth).then(() => {
@@ -75,6 +79,8 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false));
     }
 
+
+    //save user in database
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName };
         fetch('https://secret-everglades-74123.herokuapp.com/users', {
@@ -88,6 +94,7 @@ const useFirebase = () => {
 
     }
 
+    //set admin state
     useEffect(() => {
         fetch(`https://secret-everglades-74123.herokuapp.com/users/${user.email}`)
 
@@ -102,7 +109,6 @@ const useFirebase = () => {
     return {
         user,
         admin,
-        token,
         error,
         isLoading,
         loginUser,

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {
-
     Switch,
     Route,
     useRouteMatch
@@ -140,7 +139,7 @@ function Dashboard(props) {
                 sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
                 aria-label="mailbox folders"
             >
-                {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+
                 <Drawer
                     container={container}
                     variant="temporary"
@@ -205,10 +204,7 @@ function Dashboard(props) {
 }
 
 Dashboard.propTypes = {
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
+
     window: PropTypes.func,
 };
 
