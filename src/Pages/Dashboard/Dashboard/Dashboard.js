@@ -59,12 +59,13 @@ function Dashboard(props) {
 
 
             <List>
+                <ListItem button >
+                    <ListItemText > <NavLink className={navItem} to="/home" style={{ color: '#5964b4' }}>Back to Homepage</NavLink></ListItemText>
+                </ListItem>
                 {
                     !admin &&
                     <Box>
-                        <ListItem button >
-                            <ListItemText > <NavLink className={navItem} to="/home" style={{ color: '#5964b4' }}>Back to Homepage</NavLink></ListItemText>
-                        </ListItem>
+
                         <ListItem button >
                             <ListItemText > <NavLink className={navItem} to={`${url}/pay`} style={{ color: '#5964b4' }}>Pay</NavLink></ListItemText>
                         </ListItem>
