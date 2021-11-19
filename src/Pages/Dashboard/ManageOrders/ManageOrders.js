@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 const ManageOrders = () => {
     const [orders, setOrders] = useState([])
-    fetch('http://localhost:5000/orders')
+    fetch('https://secret-everglades-74123.herokuapp.com/orders')
         .then(res => res.json())
         .then(data => setOrders(data))
 
@@ -12,7 +12,7 @@ const ManageOrders = () => {
 
         const proceed = window.confirm('Do you want to delete this order?');
         if (proceed) {
-            fetch(`http://localhost:5000/orders/${id}`, {
+            fetch(`https://secret-everglades-74123.herokuapp.com/orders/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -28,7 +28,7 @@ const ManageOrders = () => {
 
     const handleUpdateOrder = (id) => {
 
-        fetch(`http://localhost:5000/orders/${id}`, {
+        fetch(`https://secret-everglades-74123.herokuapp.com/orders/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

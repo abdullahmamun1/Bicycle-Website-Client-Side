@@ -5,7 +5,7 @@ const ManageProducts = () => {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://secret-everglades-74123.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])
@@ -14,7 +14,7 @@ const ManageProducts = () => {
 
         const proceed = window.confirm('Do you want to delete this product?');
         if (proceed) {
-            fetch(`http://localhost:5000/products/${id}`, {
+            fetch(`https://secret-everglades-74123.herokuapp.com/products/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -31,7 +31,7 @@ const ManageProducts = () => {
     return (
         <Container style={{ width: '75%' }}>
             {products.map(product =>
-                <Grid container spacing={2} style={{ backgroundColor: '#5964b4', color: '#fff', padding: '10px 5px', margin: '20px 0' }}>
+                <Grid key={product._id} container spacing={2} style={{ backgroundColor: '#5964b4', color: '#fff', padding: '10px 5px', margin: '20px 0' }}>
                     <Grid item xs={12} md={4}>
                         <img width="80%" src={product.img} alt="" />
                     </Grid>

@@ -16,13 +16,13 @@ const Purchase = () => {
     const history = useHistory()
 
     useEffect(() => {
-        fetch(`http://localhost:5000/products/${id}`)
+        fetch(`https://secret-everglades-74123.herokuapp.com/products/${id}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [id])
 
     const onSubmit = data => {
-        axios.post('http://localhost:5000/orders', data)
+        axios.post('https://secret-everglades-74123.herokuapp.com/orders', data)
             .then((res) => {
                 if (res.data.insertedId) {
                     alert('Order added Successfully')

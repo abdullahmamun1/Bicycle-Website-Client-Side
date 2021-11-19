@@ -13,7 +13,7 @@ const AddReview = () => {
 
 
     const onSubmit = data => {
-        axios.post('http://localhost:5000/reviews', data)
+        axios.post('https://secret-everglades-74123.herokuapp.com/reviews', data)
             .then((res) => {
                 if (res.data.insertedId) {
                     alert('Review added Successfully')
@@ -52,7 +52,6 @@ const AddReview = () => {
                     placeholder="Write your review"
                     multiline
                     rows={2}
-                    rowsMax={5}
                     {...register("reviewDescription", { required: true })}
                     style={{ width: '80%', margin: '8px 0' }}
                 />

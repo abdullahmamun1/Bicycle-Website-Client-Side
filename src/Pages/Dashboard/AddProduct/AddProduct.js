@@ -10,7 +10,7 @@ const AddProduct = () => {
 
 
     const onSubmit = data => {
-        axios.post('http://localhost:5000/products', data)
+        axios.post('https://secret-everglades-74123.herokuapp.com/products', data)
             .then((res) => {
                 if (res.data.insertedId) {
                     alert('Product added Successfully')
@@ -54,7 +54,6 @@ const AddProduct = () => {
                     placeholder="Product Description"
                     multiline
                     rows={2}
-                    rowsMax={5}
                     {...register("description", { required: true })}
                     style={{ width: '80%', margin: '8px 0' }}
                 />

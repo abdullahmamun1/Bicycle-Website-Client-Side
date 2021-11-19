@@ -14,7 +14,7 @@ const MakeAdmin = () => {
     const handleAdminDubmit = e => {
         e.preventDefault()
         const user = { email }
-        fetch('http://localhost:5000/users/admin', {
+        fetch('https://secret-everglades-74123.herokuapp.com/admin', {
             method: 'PUT',
             headers: {
                 'authorization': `Bearer ${token}`,
